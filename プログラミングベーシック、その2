@@ -10,8 +10,16 @@ sigmoid関数：https://ja.wikipedia.org/wiki/%E3%82%B7%E3%82%B0%E3%83%A2%E3%82%
 関数のwとbをトレーニングしたら、Logistic Regressionのモデルが出来上がります。
 
 そうしたら、コスト関数を紹介します。コスト関数をトレーニングすると、wとbを得ます。
-コスト関数：https://en.wikipedia.org/wiki/Cost_function
+コスト関数：https://en.wikipedia.org/wiki/Loss_function
 
 m個サンプルのトレーニングセットを使って、wとbを探していきます。
 例えば、サンプルxx　⇒　予測値yy’、この予測値yy’はサンプルxに応じているyyと近ければ近いほど
 いいです。
+予測値と真値との誤差は、コスト関数で評価します。普通は分散を使う場合が多いですが、Logistic Regressionに
+よくないという、L(yy', yy) = -yylog(yy') - (1-yy)log(1-yy')は使われています。
+但し、それは1個サンプルのコスト関数ですが、すべてのサンプルのコスト関数を別に定義して、適当のwとb
+を見つけて、すべてのコストは最小化にすべきです。
+
+あとは、最急降下法に従い関数の計算を行います。＝反復し最小値を探索する方法です。
+
+https://ja.wikipedia.org/wiki/%E6%9C%80%E6%80%A5%E9%99%8D%E4%B8%8B%E6%B3%95
