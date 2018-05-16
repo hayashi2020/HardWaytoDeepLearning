@@ -1,0 +1,102 @@
+最急降下法を説明するため、微分を復習する必要はあります。
+https://ja.wikipedia.org/wiki/%E5%BE%AE%E5%88%86
+
+自分の数学知識は数年前にも先生に戻したので、しようがない、改めて勉強しましょう。
+
+
+foward propagationとbackward propagationとはトレーニングの独立のプロセスであります。
+https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%83%E3%82%AF%E3%83%97%E3%83%AD%E3%83%91%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3
+
+Computation Graphを使い、まずfowardにてコスト関数の出力を計算し、次はbackwardにて応じた微分を計算します。
+その微分でwとbを計算することは可能です。
+
+さて、プログラミング時間だ。
+ベクトル化について、例を見ると、forにより早すぎですね。
+
+import numpy as np
+import time
+a = np.random.rand(1000000)
+b = np.random.rand(1000000)
+tic = time.time()
+c = np.dot(a,b)
+toc = time.time()
+print("Vectorized version:" + str(1000*(toc-tic)) +"|ms")
+      
+c = 0
+tic = time.time()
+for i in range(1000000):
+    c += a[i]*b[i]
+toc = time.time()
+print("For loop:" + str(1000*(toc-tic)) + "ms")
+
+また、他のベクトル化の例を見てみましょう。
+u = np.exp(a)
+u = np.zeros((10, 10))
+u = np.abs(a)
+
+
+■　ベクトル化Logistic Regression
+z(1) = wx(1) + b, a(1) = sigmoid(z(1))
+z(2) = wx(2) + b, a(2) = sigmoid(z(2))
+z(3) = wx(3) + b, a(3) = sigmoid(z(3))
+...
+z(m) = wx(m) + b, a(m) = sigmoid(z(m))
+
+上記のように、m回の計算はやらなければなりません。
+代わりに、XはトレーニングインプットのNx行、m列のマトリックスにすると可能なので、
+zもマトリックス化にし、
+[z(1), z(2) ... z(m)] = wX + [b...b]
+
+Z = np.dot(w.T, X) + b
+
+あと、aの算出は以下の通りです。
+A = [a(1)a(2)...a(m)] = sigmoid(Z)
+
+そしてはbackforward計算になります。
+
+dz(1) = a(1) - y(1)
+dz(2) = a(2) - y(2)
+...
+dz(m) = a(m) - y(m)
+dZ = A - Y
+
+dw = 0
+dw += x(1) * dz(1)
+dw += x(2) * dz(2)
+...
+dw += x(m) * dz(m)
+dw = dw/m
+dw = 1/m * X * dz(m)
+
+dbも同様です。
+db += dz(1) ... db += dz(m) ... db = db/m
+db = 1/m ΣdZ
+
+最後に、ベクトル化での計算式を説明します。
+Z = w * X + b
+A = sigmoid(Z)
+dZ = A - Y
+dw = 1/m * X * dZ
+db = 1/m * ΣdZ
+最急降下法ですが、よくわかりませんが...
+w := w - a * dw
+b := b - a * db
+
+
+番外：Broadcasting in Python
+
+X.reshape(1, 4)　⇒　1x4のマトリックスに変更する
+例：
+a = np.array([[1],[2],[3],[4]])
+x = a.reshape((1, 4))
+
+　※　a = np.random.randn(5)　⇒　使わないように
+ランダムのガウス乱数Arrayを生成します。
+ベクトル化計算時、間違いやすいため、明らかにベクトルを生成した方が良いです。
+例：　a = np.random.randn(5, 1)　⇒　マトリックスです
+
+a.T
+マトリックスaの転置行列となります。
+
+assert(a.shape == (5, 1))
+でデバッグの時役に立ちます。
