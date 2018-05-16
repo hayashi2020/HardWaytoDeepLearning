@@ -1,0 +1,17 @@
+Logistic RegressionにおいてHypothesis Functionのことを話します。
+
+y = wx + b　
+wはxに対するWeightとなります。bは偏差値であります。
+
+yは実際は0～1の概率を期待しているので、シグモイド(sigmoid)関数に上記の結果をパラメータ
+として入れて得ます。
+sigmoid関数：https://ja.wikipedia.org/wiki/%E3%82%B7%E3%82%B0%E3%83%A2%E3%82%A4%E3%83%89%E9%96%A2%E6%95%B0
+
+関数のwとbをトレーニングしたら、Logistic Regressionのモデルが出来上がります。
+
+そうしたら、コスト関数を紹介します。コスト関数をトレーニングすると、wとbを得ます。
+コスト関数：https://en.wikipedia.org/wiki/Cost_function
+
+m個サンプルのトレーニングセットを使って、wとbを探していきます。
+例えば、サンプルxx　⇒　予測値yy’、この予測値yy’はサンプルxに応じているyyと近ければ近いほど
+いいです。
