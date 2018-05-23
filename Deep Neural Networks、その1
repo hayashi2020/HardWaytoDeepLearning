@@ -1,0 +1,20 @@
+ある関数は深いネットワークしか学習できません。
+
+問題の解決は何層のネットワークは予め分かりませんが、
+まずロジスティクスレグレッション、そして1層、2層の隠れ層を入れて、
+データ評価を行いながら、決めていきます。隠れ層の数もパラメータ
+として求められます。
+
+DeepLearningの特徴は、「Deep」であり、多くの隠れ層はいろいろ
+の問題を解決できます。⇒　Small（隠れ層の神経細胞の数） x Deep（隠れ層の数）
+
+
+■Hyperparameters
+Learning Rate
+Iterations
+L隠れ層の数
+ｎ隠れ層の神経細胞の数
+Choice of activation function
+...などは、wとbの値を制御しています。
+
+Hyperparametersの計算プロセスは、Idea—Code—Experiment—Ideaのサイクルで行います。
