@@ -1,0 +1,12 @@
+確かに最も分かりやすい例です。
+
+tensorflowで線形回帰を実装
+https://qiita.com/junichiro/items/8886f3976fc20f73335f
+
+
+hello world in deep learning
+https://qiita.com/KojiOhki/items/ff6ae04d6cf02f1b6edf
+
+上記リンクを読みながら、ポイントをメモします。
+1．訓練データ、テストデータ、検証データの分割は重要です。
+2．
