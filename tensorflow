@@ -1,16 +1,19 @@
-Install
+■Install
 https://www.tensorflow.org/install/install_linux#InstallingNativePip
 
-
+■まずは例
 確かに最も分かりやすい例です。
 
 tensorflowで線形回帰を実装
 https://qiita.com/junichiro/items/8886f3976fc20f73335f
 
-
 hello world in deep learning
 https://qiita.com/KojiOhki/items/ff6ae04d6cf02f1b6edf
 
-上記リンクを読みながら、ポイントをメモします。
-1．訓練データ、テストデータ、検証データの分割は重要です。
-2．
+■基礎知識
+import tensorflow as tf
+
+Variable　⇒変数、初期化に利用する関数、初期化を行わないと値がない
+placeholder　⇒インプットとアウトプットのデータのフォーマットを表す、位置宣言を行う
+Session　⇒定義されているモデルを実現するため、使われる「会話」、「会話」の中に、
+　　　　　　パラメータトレーニングや、計算などはできる
