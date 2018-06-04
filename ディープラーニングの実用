@@ -10,3 +10,8 @@ activation functions
 
 IDEA ⇒　CODE　⇒　Experiment　⇒　IDEAのIterationは基本で、
 そのIterationの効率はプロジェクトのキーポイントとなります。（単に時間を潰すように、試行錯誤は意味ないですね）
+
+データセットを使って、三つの部分を分けます。
+Train/Dev/Test
+
+一般的に、TrainとTestは、7/3の割合、または、6/2/2のパターンでTrain/Dev/Testを分けても一番いいやり方と言われてます。
