@@ -1,3 +1,7 @@
+Install
+https://www.tensorflow.org/install/install_linux#InstallingNativePip
+
+
 確かに最も分かりやすい例です。
 
 tensorflowで線形回帰を実装
