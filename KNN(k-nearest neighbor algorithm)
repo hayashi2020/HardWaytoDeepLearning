@@ -1,0 +1,48 @@
+https://ja.wikipedia.org/wiki/K%E8%BF%91%E5%82%8D%E6%B3%95
+https://zhuanlan.zhihu.com/p/25994179
+
+
+
+distant = [5.5901699437494745, 3.026549190084311, 1.8027756377319946, 2.23606797749979, 5.57584074378026]
+                0                    1                   2                   3                4
+#after sorting
+                2                    3                   1                   4                0
+
+>>> np.argsort(distant)
+array([2, 3, 1, 4, 0], dtype=int32)
+
+argsort would use the index of value to display where the location is after ascend sorting.
+
+import numpy as np
+from matplotlib import pyplot as plt
+import math
+
+x_train = np.array([[1,1.2],[3,3.3],[5,2.2],[7,5.7],[9,8.4]])
+print(x_train)
+y_train = np.array([0,0,0,1,1])
+print(y_train)
+
+x = np.array([6,3.7])
+distant = []
+for i in x_train:
+    d = math.sqrt(np.sum((x - i)**2))
+    distant.append(d)
+
+print(distant)
+
+k=3
+nearst = np.argsort(distant)
+topk_y = [y_train[i] for i in nearst[:k]]
+print(topk_y)
+
+
+from collections import Counter
+votes = Counter(topk_y)
+predict = votes.most_common(1)[0][0]
+print(predict)
+
+plt.scatter(x_train[y_train == 0,0],x_train[y_train == 0,1],color="r",label="normal")
+plt.scatter(x_train[y_train == 1,0],x_train[y_train == 1,1],color="g",label="bad")
+plt.scatter(x[0],x[1],color="b")
+plt.title("search")
+plt.show()
