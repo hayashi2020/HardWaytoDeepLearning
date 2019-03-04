@@ -1,0 +1,39 @@
+https://en.wikipedia.org/wiki/Linear_regression
+https://zhuanlan.zhihu.com/p/25434586
+
+#Referece: https://blog.csdn.net/qq_37982109/article/details/87910421
+#least square method
+
+import numpy as np
+from matplotlib import pyplot as plt
+import math
+
+x_train = np.array([1,2,3,5,6])
+print(x_train)
+y_train = np.array([2,4,5,11,14])
+print(y_train)
+
+x_mean = np.mean(x_train)
+y_mean = np.mean(y_train)
+numerator = 0.0
+demoniator = 0.0
+
+for x,y in zip(x_train, y_train):
+    numerator += (x-x_mean) * (y-y_mean)
+    demoniator += (x-x_mean) ** 2
+
+a = numerator / demoniator
+print(a)
+b = y_mean - a * x_mean
+print(b)
+
+y_linear = [a * x + b for x in x_train]
+
+x_predict = 3
+y_predict = a * x_predict + b
+
+
+plt.scatter(x_train, y_train)
+plt.plot(x_train, y_linear, color="orange")
+plt.scatter(x_predict, y_predict, marker="x", color="r")
+plt.show()
