@@ -13,6 +13,8 @@ array([2, 3, 1, 4, 0], dtype=int32)
 
 argsort would use the index of value to display where the location is after ascend sorting.
 
+
+#Referece: https://blog.csdn.net/qq_37982109/article/details/87896497
 import numpy as np
 from matplotlib import pyplot as plt
 import math
